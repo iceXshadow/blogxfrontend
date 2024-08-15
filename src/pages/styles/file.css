@@ -1,0 +1,48 @@
+.custom-file-upload {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    /* border: 2px solid #cacaca; */
+    background-color: #27272a;
+    padding: 1rem;
+    border-radius: 8px;
+    /* box-shadow: 0px 48px 35px -48px rgba(0,0,0,0.1); */
+  }
+  
+  .custom-file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .custom-file-upload .icon svg {
+    height: 24px;
+    fill: #f3f7fb;
+  }
+  
+  .custom-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .custom-file-upload .text span {
+    font-weight: 400;
+    color: #d3d3d3;
+    transition: all 0.5s;
+  }
+  .custom-file-upload .text span:hover {
+    font-weight: 400;
+    color: #f3f7fb;
+  }
+  
+  .custom-file-upload input {
+    display: none;
+  }

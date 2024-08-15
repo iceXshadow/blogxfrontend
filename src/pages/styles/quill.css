@@ -1,0 +1,12 @@
+.ql-editor.ql-blank::before {
+    color: #d3d3d3;
+}
+
+.ql-toolbar.ql-snow {
+    border-radius: 8px 8px 0px 0px;
+}
+
+.ql-container.ql-snow {
+    border-radius: 0px 0px 8px 8px;
+}
+

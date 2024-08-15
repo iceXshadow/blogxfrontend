@@ -5,6 +5,7 @@ import DOMPurify from 'dompurify';
 import Image from '../components/Image';
 import {UserContext} from '../UserContext';
 import ReactTimeAgo from 'react-time-ago';
+import { API_BASE_URL } from '../api';
 
 const ReadPost = () => {
     const [postInfo, setPostInfo] = useState(null);
@@ -12,7 +13,7 @@ const ReadPost = () => {
     const {userInfo} = useContext(UserContext);
 
     useEffect(() => {
-        fetch(`http://localhost:4000/post/${id}`)
+        fetch(API_BASE_URL+`/post/${id}`)
             .then((response) => {
                 response.json().then(postData => {
                     setPostInfo(postData);

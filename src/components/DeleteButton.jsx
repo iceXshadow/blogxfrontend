@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../api';
 
 const DeleteButton = ({ postId }) => {
     const navigate = useNavigate();
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/delete/${postId}`, {
+            const response = await fetch(API_BASE_URL+`/delete/${postId}`, {
                 method: 'DELETE',
                 credentials: 'include'
             });

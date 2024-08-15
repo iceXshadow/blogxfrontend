@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import { API_BASE_URL } from "../api";
 
 const Navbar = () => {
     const {setUserInfo, userInfo} = useContext(UserContext);
@@ -10,13 +11,13 @@ const Navbar = () => {
     const toggleMenu = () => setMenuOpen(!isMenuOpen);
 
     useEffect(() => {
-        fetch("http://localhost:4000/profile", {
+        fetch(API_BASE_URL+"/profile", {
             credentials: "include",
         }).then((response) => {
             if (response.ok) {
                 response.json().then((userInfo) => {
                     setUserInfo(userInfo);
-                });
+                }).catch((err) => console.log(err))
             } else {
                 setUserInfo(null);
             }
@@ -26,7 +27,7 @@ const Navbar = () => {
     }, [setUserInfo]);
 
     async function logout () {
-        await fetch('http://localhost:4000/logout', {
+        await fetch(API_BASE_URL+'/logout', {
             credentials: "include",
             method: 'POST',
         });

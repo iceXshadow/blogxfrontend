@@ -5,6 +5,7 @@ import './styles/quill.css'
 
 
 import { Navigate } from 'react-router-dom';
+import { API_BASE_URL } from '../api';
 
 const modules = {
     toolbar: [
@@ -39,7 +40,7 @@ const CreatePost = () => {
 
         ev.preventDefault();
 
-        const response = await fetch('http://localhost:4000/post', {
+        const response = await fetch(API_BASE_URL+'/post', {
             method: 'POST',
             body: data,
             credentials: 'include',

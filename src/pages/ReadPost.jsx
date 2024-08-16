@@ -37,7 +37,7 @@ const ReadPost = () => {
                     <div className='w-full flex flex-col gap-2 md:flex-row md:justify-between items-center'>   
                         <div className="bio flex flex-col gap-0 items-center lg:items-start">
                             <span className='font-semibold'>{postInfo.author.username}</span>
-                            <span className='text-purple-100'><ReactTimeAgo date={timestamp.updatedAt} locale="en-US" /></span>
+                            <span className='text-purple-100'><ReactTimeAgo date={timestamp} locale="en-US" /></span>
                         </div>
                         <div>
                             {userInfo && userInfo.id === postInfo.author._id && (

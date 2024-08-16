@@ -27,8 +27,8 @@ const ReadPost = () => {
 
     // Sanitize the HTML content
     const sanitizedContent = DOMPurify.sanitize(postInfo.content);
-    const postCover = `http://localhost:4000/${postInfo.cover}`;
-
+    const postCover = `${API_BASE_URL.endsWith('/') ? API_BASE_URL : API_BASE_URL + '/'}${postInfo.cover.startsWith('/') ? postInfo.cover.slice(1) : postInfo.cover}`;
+    const timestamp = Date.parse(postInfo.updatedAt)
     return ( 
         <main className='w-full min-h-screen overflow-hidden px-8 flex items-center justify-center mb-10'>
             <div className='max-w-screen-lg flex flex-col items-center gap-8'>
@@ -37,7 +37,7 @@ const ReadPost = () => {
                     <div className='w-full flex flex-col gap-2 md:flex-row md:justify-between items-center'>   
                         <div className="bio flex flex-col gap-0 items-center lg:items-start">
                             <span className='font-semibold'>{postInfo.author.username}</span>
-                            <span className='text-purple-100'><ReactTimeAgo date={postInfo.updatedAt} locale="en-US" /></span>
+                            <span className='text-purple-100'><ReactTimeAgo date={timestamp.updatedAt} locale="en-US" /></span>
                         </div>
                         <div>
                             {userInfo && userInfo.id === postInfo.author._id && (

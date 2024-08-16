@@ -8,7 +8,6 @@
     "@testing-library/user-event": "^13.2.1",
     "clsx": "^2.1.1",
     "dompurify": "^3.1.6",
-    "flowbite-react": "^0.10.1",
     "framer-motion": "^11.3.24",
     "javascript-time-ago": "^2.5.10",
     "react": "^18.3.1",

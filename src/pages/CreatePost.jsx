@@ -32,22 +32,34 @@ const CreatePost = () => {
     const [redirect, setRedirect] = useState(false);
     
     async function createPost(ev) {
+        ev.preventDefault();
+    
         const data = new FormData();
         data.set('title', title);
         data.set('summary', summary);
         data.set('content', content);
-        data.set('file', files[0]);
-
-        ev.preventDefault();
-
-        const response = await fetch(API_BASE_URL+'/post', {
-            method: 'POST',
-            body: data,
-            credentials: 'include',
-        })
-        
-        if(response.ok) {
-            setRedirect(true);
+        if (files && files[0]) {
+            data.set('file', files[0]);
+        } else {
+            console.error('No file selected');
+            return;
+        }
+    
+        try {
+            const response = await fetch('https://blogxbackend.vercel.app/post', {
+                method: 'POST',
+                body: data,
+                credentials: 'include',
+            });
+    
+            if (response.ok) {
+                setRedirect(true);
+            } else {
+                const errorData = await response.json();
+                console.error('Error:', errorData);
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
         }
     }
 
@@ -88,7 +100,7 @@ const CreatePost = () => {
                         placeholder='Write your blog post...'
                         value={content}
                         onChange={newValue => setContent(newValue)} />
-                    <button class="bg-gradient-to-r from-red-500 to-blue-500 via-purple-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-red-600 hover:to-blue-600 hover:via-purple-600 transition ease-in-out duration-150" type="submit">Create Post</button>
+                    <button className="bg-gradient-to-r from-red-500 to-blue-500 via-purple-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-red-600 hover:to-blue-600 hover:via-purple-600 transition ease-in-out duration-150" type="submit">Create Post</button>
                 </form>
             </div>
         </main>

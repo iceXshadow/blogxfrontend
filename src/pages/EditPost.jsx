@@ -32,14 +32,16 @@ const EditPost = () => {
 
 
     useEffect(() => {
-        fetch(API_BASE_URL+'/post/'+id).then((response) => {
-            response.json().then(postInfo => {
+        fetch(`${API_BASE_URL}/post/${id}`)
+            .then(response => response.json())
+            .then(postInfo => {
                 setTitle(postInfo.title);
                 setSummary(postInfo.summary);
                 setContent(postInfo.content);
             })
-        })
-    },[id])
+            .catch(error => console.error('Error fetching post:', error));
+    }, [id]);
+
 
     async function updatePost(ev) {
         ev.preventDefault();
@@ -53,14 +55,21 @@ const EditPost = () => {
             data.set('file', files?.[0]);
         }
 
-        const response = await fetch(API_BASE_URL+'/post', {
-            method: 'PUT',
-            body: data,
-            credentials: 'include'
-        });
+        try {
+            const response = await fetch(`${API_BASE_URL}/post`, {
+                method: 'PUT',
+                body: data,
+                credentials: 'include'
+            });
 
-        if(response.ok) {
-            setRedirect(true);
+            if (response.ok) {
+                setRedirect(true);
+            } else {
+                const errorData = await response.json();
+                console.error('Error updating post:', errorData);
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
         }
     }
 

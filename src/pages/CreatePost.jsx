@@ -46,7 +46,7 @@ const CreatePost = () => {
         }
     
         try {
-            const response = await fetch(API_BASE_URL+'/post', {
+            const response = await fetch(`${API_BASE_URL}/post`, {
                 method: 'POST',
                 body: data,
                 credentials: 'include',

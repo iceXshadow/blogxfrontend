@@ -6,7 +6,7 @@ const DeleteButton = ({ postId }) => {
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(API_BASE_URL+`/delete/${postId}`, {
+            const response = await fetch(`${API_BASE_URL}/delete/${postId}`, {
                 method: 'DELETE',
                 credentials: 'include'
             });

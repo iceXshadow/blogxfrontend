@@ -27,7 +27,7 @@ const ReadPost = () => {
 
     // Sanitize the HTML content
     const sanitizedContent = DOMPurify.sanitize(postInfo.content);
-    const postCover = `${API_BASE_URL.endsWith('/') ? API_BASE_URL : API_BASE_URL + '/'}${postInfo.cover.startsWith('/') ? postInfo.cover.slice(1) : postInfo.cover}`;
+    const postCover = `${API_BASE_URL}/cover/${postInfo.cover}`;
     const timestamp = Date.parse(postInfo.updatedAt)
     return ( 
         <main className='w-full min-h-screen overflow-hidden px-8 flex items-center justify-center mb-10'>

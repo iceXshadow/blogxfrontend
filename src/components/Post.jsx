@@ -11,7 +11,7 @@ const Post = ({ author, title, summary, cover, updatedAt, _id }) => {
             <div className="container p-2 flex flex-col flex-grow gap-4">
                 <Link to={`/post/${_id}`}>
                     <div className="w-full h-[12rem] rounded-lg overflow-hidden">
-                        <img src={API_BASE_URL + '/'+  cover} alt="" className='w-full h-full object-cover'/>
+                        <img src={`${API_BASE_URL}/cover/${cover}`} alt="" className='w-full h-full object-cover'/>
                     </div>
                 </Link> 
                 <div className="content w-full flex flex-col gap-3 p-4 flex-grow">

@@ -22,6 +22,7 @@ const LoginPage = () => {
       response.json().then(userInfo => {
         setUserInfo(userInfo);
         setRedirect(true);
+        console.log('Token:', userInfo.token);
       })
     } else {
       alert('wrong credentials');

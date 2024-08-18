@@ -1,30 +1,33 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import { AuthContext } from '../AuthContext';
 import { API_BASE_URL } from "../api";
 
 const Navbar = () => {
-    const {setUserInfo, userInfo} = useContext(UserContext);
+    const { setUserInfo, userInfo } = useContext(UserContext);
+    const { isAuthenticated } = useContext(AuthContext);
     const [isMenuOpen, setMenuOpen] = useState(false);
-
 
     const toggleMenu = () => setMenuOpen(!isMenuOpen);
 
     useEffect(() => {
-        fetch(API_BASE_URL+"/profile", {
-            credentials: "include",
-        }).then((response) => {
-            if (response.ok) {
-                response.json().then((userInfo) => {
-                    setUserInfo(userInfo);
-                }).catch((err) => console.log(err))
-            } else {
+        if (isAuthenticated) {
+            fetch(`${API_BASE_URL}/profile`, {
+                credentials: "include",
+            }).then((response) => {
+                if (response.ok) {
+                    response.json().then((userInfo) => {
+                        setUserInfo(userInfo);
+                    }).catch((err) => console.log(err));
+                } else {
+                    setUserInfo(null);
+                }
+            }).catch(() => {
                 setUserInfo(null);
-            }
-        }).catch(() => {
-            setUserInfo(null);
-        });
-    }, [setUserInfo]);
+            });
+        }
+    }, [isAuthenticated, setUserInfo]);
 
     async function logout () {
         await fetch(API_BASE_URL+'/logout', {

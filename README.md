@@ -42,8 +42,7 @@ To get started with the project locally, follow these steps:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/yourusername/blogxfrontend.git
-   git clone https://github.com/yourusername/blogxbackend.git
-   cd blog-by-ice
+   cd blogxfrontend
 2. **Set Up Environment Variables:**
    - Create a .env file in the root directory and add the necessary environment variables as shown in the .env.example file.
    - Start the development server:

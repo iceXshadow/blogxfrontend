@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../api';
+import toast, { Toaster } from 'react-hot-toast';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
@@ -17,14 +18,43 @@ const RegisterPage = () => {
     });
 
     if(response.status === 200) {
-      alert('Registration successful');
-      navigate('/');
+      toast.success('Registration successfull.', {
+        position: 'bottom-center',
+        style: {
+          border: '1px solid #22c55e',
+          // padding: '16px',
+          color: '#fff',
+        },
+      });
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
     } else {
-      alert('Registration failed');
+      toast.error('Registration failed.', {
+        position: 'bottom-center',
+        style: {
+          border: '1px solid #ef4444',
+          // padding: '16px',
+          color: '#fff',
+        },
+      });
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000);
     }
   }
   return (
     <div className='common-flex min-w-screen mt-40'>
+      <Toaster 
+        position = "bottom-center"
+        toastOptions={{
+        style: {
+          background: '#1c1f26',
+          color: '#fff',
+          fontFamily: "Outfit"
+        },
+        duration: 3000
+      }}/>
       <div className='w-full lg:w-1/2 p-10'>
         <form action="" className="flex flex-col gap-3 w-full" onSubmit={register}>
           <input 
